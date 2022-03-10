@@ -1,0 +1,25 @@
+Manvika Satish
+Professor Mork
+CPE 203 
+January 21, 2022
+
+Methods not moved/Ambiguous methods:
+1. getCurrentImage(), getImages() - I chose to leave getCurrentImage() in the Functions class, though it can be placed in the Entity class, because basically all the function does is give the index of an image, which I feel is pretty general and can be applied to multiple things, there really is no purpose in moving it because an entity is not "performing" the action. I left getImages() in the Functions class because all it does is return an image with a certain key. There is no purpose in moving it to another function.
+
+2. adjacent() - Adjacent is just a math function so I left it in the functions. 
+
+3. getNumFromRange() - I left this method in the Functions class because all it does is generate a random number in a certain range; it is a math function. There is no specific object that performs an action in this method. 
+
+4. setAlpha() - setAlpha() just sets up the alpha value and the pixels, visuals of the game, which don't really belong in any particular class because there is no specific object action on it. 
+
+5. load(), loadImages() - I chose to leave load and loadImages in the Functions class because because it just sets up the general view of the game. I find them both ambiguous because you could move load to WorldModel and loadImages to ImageStore, but I don't find any reason to move them there.  
+
+6. processLine(), processImageLine() - I left these methods in the Functions class because there isn't any specific class/object that is "performing" an action in these methods. 
+
+7. parseBackground(), parseSapling(), parseDude(), parseFairy(), parseTree(), parseObstacle(), parseHouse() - I chose to keep all the parse functions in the Functions class because, again, all it does is add entities to the world. The entities are not really "performing" an action.  
+
+8. nearestEntity() - I left this method in the Functions class because it just calculates where the nearest entity is. I guess it could be considered a "math" function.
+
+9. distanceSquared() - I didn't move this method to any of the other classes, and chose to keep it static because all the method does is math. It does basic math which is not really performed by any objects. It is also used in a lot of classes which makes it a lot easier for it to be public and static, without having to create separate objects to do a math function.
+
+10. clamp() - Like other methods I didn't move to other classes, the clamp() method just performs a Math operation which returns the minimum of the two biggest numbers from the parameter. There is no specific object that performs an action in this method. 
