@@ -102,4 +102,18 @@ public class Factory {
     }
 
 
+    public static Entity createDoofenschmirtz(
+            String id, Point position, int animationPeriod, List<PImage> images)
+    {
+        return new Doofenschmirtz(id, position, images,
+                animationPeriod);
+    }
+
+    public static Entity createMoleratinator(
+            String id, Point position, int animationPeriod, List<PImage> images)
+    {
+        return new Moleratinator(id, position, images,
+                animationPeriod);
+    }
+
 }
