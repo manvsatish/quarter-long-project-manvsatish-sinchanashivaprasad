@@ -68,6 +68,14 @@ public final class Functions
     public static final int FAIRY_ANIMATION_PERIOD = 4;
     public static final int FAIRY_ACTION_PERIOD = 5;
 
+    public static final String PERRY_KEY = "perry";
+    public static final int PERRY_NUM_PROPERTIES = 6;
+    public static final int PERRY_ID = 1;
+    public static final int PERRY_COL = 2;
+    public static final int PERRY_ROW = 3;
+    public static final int PERRY_ANIMATION_PERIOD = 4;
+    public static final int PERRY_ACTION_PERIOD = 5;
+
     public static final String STUMP_KEY = "stump";
 
     public static final String TREE_KEY = "tree";
@@ -86,11 +94,6 @@ public final class Functions
     public static final int TREE_HEALTH_MAX = 3;
     public static final int TREE_HEALTH_MIN = 1;
 
-
-//    public static boolean adjacent(Point p1, Point p2) {
-//        return (p1.getX() == p2.getX() && Math.abs(p1.getY() - p2.getY()) == 1) || (p1.getY() == p2.getY()
-//                && Math.abs(p1.getX() - p2.getX()) == 1);
-//    }
 
     public static int getNumFromRange(int max, int min)
     {
@@ -210,6 +213,8 @@ public final class Functions
                     return parseTree(properties, world, imageStore);
                 case SAPLING_KEY:
                     return parseSapling(properties, world, imageStore);
+                case PERRY_KEY:
+                    return parsePerry(properties, world, imageStore);
             }
         }
 
@@ -277,6 +282,22 @@ public final class Functions
         }
 
         return properties.length == FAIRY_NUM_PROPERTIES;
+    }
+
+    public static boolean parsePerry(
+            String[] properties, WorldModel world, ImageStore imageStore)
+    {
+        if (properties.length == PERRY_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[PERRY_COL]),
+                    Integer.parseInt(properties[PERRY_ROW]));
+            Entity entity = Factory.createPerry(properties[PERRY_ID], pt,
+                    Integer.parseInt(properties[PERRY_ACTION_PERIOD]),
+                    Integer.parseInt(properties[PERRY_ANIMATION_PERIOD]),
+                    imageStore.getImageList(PERRY_KEY));
+            world.tryAddEntity(entity);
+        }
+
+        return properties.length == PERRY_NUM_PROPERTIES;
     }
 
     public static boolean parseTree(

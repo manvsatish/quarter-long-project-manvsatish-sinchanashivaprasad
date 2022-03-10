@@ -45,6 +45,11 @@ public class Activity implements Action {
             ((DudeFull) entity).executeActivity(this.world,
                     this.imageStore, scheduler);
         }
+        else if(entity.getClass() == PerryThePlatypus.class)
+        {
+            ((PerryThePlatypus) entity).executeActivity(this.world,
+                    this.imageStore, scheduler);
+        }
         else
         {
             throw new UnsupportedOperationException(String.format(

@@ -81,5 +81,25 @@ public class Factory {
                 actionPeriod, animationPeriod);
     }
 
+    public static PerryThePlatypus createPerry(String id,
+                                               Point position,
+                                               int actionPeriod,
+                                               int animationPeriod,
+                                               List<PImage> images)
+    {
+        return new PerryThePlatypus(id, position, images,
+                actionPeriod, animationPeriod);
+    }
+
+    public static MoleRat createMoleRat(String id,
+                                               Point position,
+                                               int actionPeriod,
+                                               int animationPeriod,
+                                               List<PImage> images)
+    {
+        return new MoleRat( id, position, images,
+                actionPeriod, animationPeriod);
+    }
+
 
 }
