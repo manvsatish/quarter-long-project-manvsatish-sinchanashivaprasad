@@ -2,8 +2,8 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Moleratinator extends MovingEntity{
-    public Moleratinator(
+public class MoleRatInator extends MovingEntity{
+    public MoleRatInator(
             String id,
             Point position,
             List<PImage> images,
