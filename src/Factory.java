@@ -105,7 +105,7 @@ public class Factory {
     public static Entity createDoofenshmirtz(
             String id, Point position, int animationPeriod, List<PImage> images)
     {
-        return new Doofenschmirtz(id, position, images,
+        return new Doofenshmirtz(id, position, images,
                 animationPeriod);
     }
 
