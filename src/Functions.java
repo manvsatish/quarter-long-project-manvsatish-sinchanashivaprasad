@@ -76,6 +76,20 @@ public final class Functions
     public static final int PERRY_ANIMATION_PERIOD = 4;
     public static final int PERRY_ACTION_PERIOD = 5;
 
+    public static final String DOOF_KEY = "doofenshmirtz";
+    public static final int DOOF_NUM_PROPERTIES = 5;
+    public static final int DOOF_ID = 1;
+    public static final int DOOF_COL = 2;
+    public static final int DOOF_ROW = 3;
+    public static final int DOOF_ANIMATION_PERIOD = 4;
+
+    public static final String INATOR_KEY = "moleratinator";
+    public static final int INATOR_NUM_PROPERTIES = 5;
+    public static final int INATOR_ID = 1;
+    public static final int INATOR_COL = 2;
+    public static final int INATOR_ROW = 3;
+    public static final int INATOR_ANIMATION_PERIOD = 4;
+
     public static final String STUMP_KEY = "stump";
 
     public static final String TREE_KEY = "tree";
@@ -215,6 +229,10 @@ public final class Functions
                     return parseSapling(properties, world, imageStore);
                 case PERRY_KEY:
                     return parsePerry(properties, world, imageStore);
+                case DOOF_KEY:
+                    return parseDoof(properties, world, imageStore);
+                case INATOR_KEY:
+                    return parseInator(properties, world, imageStore);
             }
         }
 
@@ -330,6 +348,36 @@ public final class Functions
         }
 
         return properties.length == OBSTACLE_NUM_PROPERTIES;
+    }
+
+    public static boolean parseDoof(
+            String[] properties, WorldModel world, ImageStore imageStore)
+    {
+        if (properties.length == DOOF_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[DOOF_COL]),
+                    Integer.parseInt(properties[DOOF_ROW]));
+            Entity entity = Factory.createObstacle(properties[DOOF_ID], pt,
+                    Integer.parseInt(properties[DOOF_ANIMATION_PERIOD]),
+                    imageStore.getImageList(DOOF_KEY));
+            world.tryAddEntity(entity);
+        }
+
+        return properties.length == DOOF_NUM_PROPERTIES;
+    }
+
+    public static boolean parseInator(
+            String[] properties, WorldModel world, ImageStore imageStore)
+    {
+        if (properties.length == INATOR_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[INATOR_COL]),
+                    Integer.parseInt(properties[INATOR_ROW]));
+            Entity entity = Factory.createObstacle(properties[INATOR_ID], pt,
+                    Integer.parseInt(properties[INATOR_ANIMATION_PERIOD]),
+                    imageStore.getImageList(INATOR_KEY));
+            world.tryAddEntity(entity);
+        }
+
+        return properties.length == INATOR_NUM_PROPERTIES;
     }
 
     public static boolean parseHouse(
