@@ -2,13 +2,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Scanner;
+import java.util.Optional;
 
 import processing.core.*;
 
 import javax.swing.text.View;
-import javax.xml.stream.events.EndElement;
 
 public final class VirtualWorld extends PApplet
 {
@@ -86,31 +85,22 @@ public final class VirtualWorld extends PApplet
     // Just for debugging and for P5
     public void mousePressed() {
         Point pressed = mouseToPoint(mouseX, mouseY);
-        Entity doof = Factory.createDoofenshmirtz(Functions.DOOF_KEY, pressed,
-                0, imageStore.getImageList(Functions.DOOF_KEY));
-        world.addEntity(doof);
-        scheduler.unscheduleAllEvents(doof);
+        System.out.println("CLICK! " + pressed.getX() + ", " + pressed.getY());
+
+        Optional<Entity> entityOptional = world.getOccupant(pressed);
+        if (entityOptional.isPresent())
+        {
+            Entity entity = entityOptional.get();
+            System.out.println(entity.getId() + ": " + entity.getClass());
+        }
+
     }
-
-//    private List<Point> aroundPressedPoints(int doofOffset){
-//
-//        return Arrays.asList(pressedPointOS(0, doofOffset),
-//                pressedPointOS(doofOffset, 0),
-//                pressedPointOS(doofOffset, doofOffset),
-//                pressedPointOS(0, -doofOffset),
-//                pressedPointOS(-doofOffset, 0),
-//                pressedPointOS(-doofOffset, -doofOffset),
-//                pressedPointOS(doofOffset, -doofOffset),
-//                pressedPointOS(-doofOffset, doofOffset));
-//    }
-
 
     private Point mouseToPoint(int x, int y)
     {
         Viewport viewport = new Viewport(x, y);
-        return view.getViewport().viewportToWorld(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT);
+        return viewport.viewportToWorld(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT);
     }
-
     public void keyPressed() {
         if (key == CODED) {
             int dx = 0;

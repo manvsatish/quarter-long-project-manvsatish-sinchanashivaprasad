@@ -36,6 +36,12 @@ public class DudeFull extends Move{
     }
 
     public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+        /*DudeNotFull miner = (DudeNotFull) Factory.createDudeNotFull(this.getId(), this.getPosition(),
+                this.getActionPeriod(),
+                this.getAnimationPeriod(),
+                this.resourceLimit,
+                this.getImages());*/
+
         DudeNotFull miner = (DudeNotFull) Factory.createDudeNotFull(this.getId(), this.getPosition(),
                 this.getActionPeriod(),
                 this.getAnimationPeriod(),
