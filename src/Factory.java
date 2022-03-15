@@ -92,12 +92,12 @@ public class Factory {
     }
 
     public static MoleRat createMoleRat(String id,
-                                               Point position,
-                                               int resourceLimit,
-                                               int resourceCount,
-                                               int actionPeriod,
-                                               int animationPeriod,
-                                               List<PImage> images)
+                                        Point position,
+                                        int resourceLimit,
+                                        int resourceCount,
+                                        int actionPeriod,
+                                        int animationPeriod,
+                                        List<PImage> images)
     {
         return new MoleRat( id, position, images, resourceLimit, resourceCount,
                 actionPeriod, animationPeriod);

@@ -58,6 +58,54 @@ public class DudeNotFull extends Move{
         return false;
     }
 
+    public boolean transformMolerat(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+
+        Optional<Entity> inator =
+                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(MoleRatInator.class)));
+
+        if (inator.isPresent()) {
+
+            Point tgtPos = inator.get().getPosition();
+
+            if (moveTo(world, inator.get(), scheduler)) {
+                MoleRat molerat = (MoleRat) Factory.createMoleRat("molerat not full" + this.getId(),
+                        tgtPos, this.resourceLimit, this.resourceCount, Functions.MOLE_RAT_ACTION_PERIOD, Functions.MOLE_RAT_ANIMATION_PERIOD,
+                        imageStore.getImageList(Functions.MOLE_RAT_KEY));
+
+                world.addEntity(molerat);
+                molerat.scheduleActions(scheduler, world, imageStore);
+                //return true;
+            }
+        }
+
+        scheduler.scheduleEvent(this,
+                Functions.createActivityAction(this, world, imageStore),
+                this.getActionPeriod());
+        return false;
+    }
+
+
+
+
+          /*
+            DudeFull miner = (DudeFull) Factory.createDudeFull(this.getId(), this.getPosition(),
+                    this.getActionPeriod(),
+                    this.getAnimationPeriod(),
+                    this.resourceLimit,
+                    this.getImages());
+
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+
+            world.addEntity(miner);
+            miner.scheduleActions(scheduler, world, imageStore);
+
+            return true;
+        }
+
+        return false;
+    }*/
+
     @Override
     public boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition())) {
