@@ -85,15 +85,23 @@ public final class VirtualWorld extends PApplet
     // Just for debugging and for P5
     public void mousePressed() {
         Point pressed = mouseToPoint(mouseX, mouseY);
-        System.out.println("CLICK! " + pressed.getX() + ", " + pressed.getY());
+        //System.out.println("CLICK! " + pressed.getX() + ", " + pressed.getY());
+        Entity testDoof = Factory.createDoofenshmirtz("hi", pressed, 100, imageStore.getImageList("doofenshmirtz"));
 
-        Optional<Entity> entityOptional = world.getOccupant(pressed);
+        //Entity testMolerat = Factory.createMoleRat("hi", pressed, 10, 10, imageStore.getImageList("molerat"));
+
+        /*Optional<Entity> entityOptional = world.getOccupant(pressed);
         if (entityOptional.isPresent())
         {
             Entity entity = entityOptional.get();
             System.out.println(entity.getId() + ": " + entity.getClass());
-        }
+        }*/
 
+        world.addEntity(testDoof);
+        scheduler.unscheduleAllEvents(testDoof);
+
+       // world.addEntity(testMolerat);
+        //scheduler.unscheduleAllEvents(testMolerat);
     }
 
     private Point mouseToPoint(int x, int y)

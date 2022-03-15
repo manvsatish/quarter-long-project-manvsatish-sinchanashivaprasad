@@ -2,9 +2,9 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Doofenschmirtz extends MovingEntity{
+public class Doofenshmirtz extends MovingEntity{
 
-    public Doofenschmirtz(
+    public Doofenshmirtz(
             String id,
             Point position,
             List<PImage> images,
