@@ -2,6 +2,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Optional;
 
@@ -84,23 +86,59 @@ public final class VirtualWorld extends PApplet
 
     // Just for debugging and for P5
     public void mousePressed() {
-        Point pressed = mouseToPoint(mouseX, mouseY);
-        //System.out.println("CLICK! " + pressed.getX() + ", " + pressed.getY());
-
-        Entity doof = Factory.createDoofenshmirtz(Functions.DOOF_KEY, pressed,
-                0, imageStore.getImageList(Functions.DOOF_KEY));
+        Point pressed = mouseToPoint();
+        Doofenshmirtz doof = Factory.createDoofenshmirtz(Functions.DOOF_KEY, pressed,
+                Functions.DOOF_ANIMATION_PERIOD, imageStore.getImageList(Functions.DOOF_KEY));
         world.addEntity(doof);
         scheduler.unscheduleAllEvents(doof);
-
-
+        addBackgroundTiles();
 
     }
 
-    private Point mouseToPoint(int x, int y)
+    public void addBackgroundTiles()
     {
-        Viewport viewport = new Viewport(x, y);
+        Background moleRatInator = new Background(Functions.INATOR_KEY, imageStore.getImageList(Functions.INATOR_KEY));
+        aroundDoof(1).forEach(point -> {
+            world.setBackground(point, moleRatInator);
+            if (dudeNearInator(point) && world.getOccupant(point).isPresent())
+            {
+                Move dude = (Move) (world.getOccupant(point).get());
+                dude.setImageIndex(0);
+                dude.setImages(imageStore.getImageList(Functions.MOLE_RAT_KEY));
+                dude.setAnimationPeriod(Functions.MOLE_RAT_ANIMATION_PERIOD);
+                dude.setActionPeriod(Functions.MOLE_RAT_ACTION_PERIOD);
+            }
+        });
+    }
+
+    private boolean dudeNearInator(Point pos)
+    {
+        return world.withinBounds(pos) &&
+                (world.getOccupancyCell(pos) instanceof DudeNotFull || world.getOccupancyCell(pos) instanceof DudeFull);
+    }
+
+    private Point pressedPointOffset(int x, int y)
+    {
+        return new Point(mouseToPoint().getX() + x,mouseToPoint().getY() + y);
+    }
+
+    private List<Point> aroundDoof(int doofenshmirtzOffset){
+
+        return Arrays.asList(pressedPointOffset(0, doofenshmirtzOffset),
+                pressedPointOffset(doofenshmirtzOffset, 0),
+                pressedPointOffset(doofenshmirtzOffset, doofenshmirtzOffset),
+                pressedPointOffset(0, -doofenshmirtzOffset),
+                pressedPointOffset(-doofenshmirtzOffset, 0),
+                pressedPointOffset(-doofenshmirtzOffset, -doofenshmirtzOffset),
+                pressedPointOffset(doofenshmirtzOffset, -doofenshmirtzOffset),
+                pressedPointOffset(-doofenshmirtzOffset, doofenshmirtzOffset));
+    }
+
+    private Point mouseToPoint()
+    {
         return view.getViewport().viewportToWorld(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT);
     }
+
     public void keyPressed() {
         if (key == CODED) {
             int dx = 0;
