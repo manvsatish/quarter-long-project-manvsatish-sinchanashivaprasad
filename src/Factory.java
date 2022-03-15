@@ -112,9 +112,9 @@ public class Factory {
     }
 
     public static MoleRatInator createMoleRatInator(String id,
-                                                    Point position,
-                                                    List<PImage> images,
-                                                    int animationPeriod)
+                                                     Point position,
+                                                     List<PImage> images,
+                                                     int animationPeriod)
     {
         return new MoleRatInator(id, position, images, animationPeriod);
     }
