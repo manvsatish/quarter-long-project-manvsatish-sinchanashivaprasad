@@ -86,25 +86,25 @@ public class DudeNotFull extends Move{
 
 
 
-
-          /*
-            DudeFull miner = (DudeFull) Factory.createDudeFull(this.getId(), this.getPosition(),
-                    this.getActionPeriod(),
-                    this.getAnimationPeriod(),
-                    this.resourceLimit,
-                    this.getImages());
-
-            world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
-
-            world.addEntity(miner);
-            miner.scheduleActions(scheduler, world, imageStore);
-
-            return true;
-        }
-
-        return false;
-    }*/
+//
+//
+//            DudeFull miner = (DudeFull) Factory.createDudeFull(this.getId(), this.getPosition(),
+//                    this.getActionPeriod(),
+//                    this.getAnimationPeriod(),
+//                    this.resourceLimit,
+//                    this.getImages());
+//
+//            world.removeEntity(this);
+//            scheduler.unscheduleAllEvents(this);
+//
+//            world.addEntity(miner);
+//            miner.scheduleActions(scheduler, world, imageStore);
+//
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
     @Override
     public boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
