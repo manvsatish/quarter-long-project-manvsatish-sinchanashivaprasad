@@ -58,7 +58,7 @@ public class DudeNotFull extends Move{
         return false;
     }
 
-    public boolean transformMolerat(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    public boolean transformMoleRat(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
 
         Optional<Entity> inator =
                 world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(MoleRatInator.class)));

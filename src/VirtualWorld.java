@@ -91,11 +91,11 @@ public final class VirtualWorld extends PApplet
                 Functions.DOOF_ANIMATION_PERIOD, imageStore.getImageList(Functions.DOOF_KEY));
         world.addEntity(doof);
         scheduler.unscheduleAllEvents(doof);
-        addBackgroundTiles();
+        eventVisualization();
 
     }
 
-    public void addBackgroundTiles()
+    public void eventVisualization()
     {
         Background moleRatInator = new Background(Functions.INATOR_KEY, imageStore.getImageList(Functions.INATOR_KEY));
         aroundDoof(1).forEach(point -> {
@@ -114,7 +114,8 @@ public final class VirtualWorld extends PApplet
     private boolean dudeNearInator(Point pos)
     {
         return world.withinBounds(pos) &&
-                (world.getOccupancyCell(pos) instanceof DudeNotFull || world.getOccupancyCell(pos) instanceof DudeFull);
+                (world.getOccupancyCell(pos) instanceof DudeNotFull ||
+                        world.getOccupancyCell(pos) instanceof DudeFull);
     }
 
     private Point pressedPointOffset(int x, int y)
@@ -122,16 +123,13 @@ public final class VirtualWorld extends PApplet
         return new Point(mouseToPoint().getX() + x,mouseToPoint().getY() + y);
     }
 
-    private List<Point> aroundDoof(int doofenshmirtzOffset){
-
-        return Arrays.asList(pressedPointOffset(0, doofenshmirtzOffset),
-                pressedPointOffset(doofenshmirtzOffset, 0),
-                pressedPointOffset(doofenshmirtzOffset, doofenshmirtzOffset),
-                pressedPointOffset(0, -doofenshmirtzOffset),
-                pressedPointOffset(-doofenshmirtzOffset, 0),
-                pressedPointOffset(-doofenshmirtzOffset, -doofenshmirtzOffset),
-                pressedPointOffset(doofenshmirtzOffset, -doofenshmirtzOffset),
-                pressedPointOffset(-doofenshmirtzOffset, doofenshmirtzOffset));
+    private List<Point> aroundDoof(int doofenshmirtzOffset)
+    {
+        // points for the 8 moleratinators
+        return Arrays.asList(pressedPointOffset(0, doofenshmirtzOffset), pressedPointOffset(doofenshmirtzOffset, 0),
+                pressedPointOffset(doofenshmirtzOffset, doofenshmirtzOffset), pressedPointOffset(0, -doofenshmirtzOffset),
+                pressedPointOffset(-doofenshmirtzOffset, 0), pressedPointOffset(-doofenshmirtzOffset, -doofenshmirtzOffset),
+                pressedPointOffset(doofenshmirtzOffset, -doofenshmirtzOffset), pressedPointOffset(-doofenshmirtzOffset, doofenshmirtzOffset));
     }
 
     private Point mouseToPoint()
