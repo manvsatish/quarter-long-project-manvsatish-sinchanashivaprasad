@@ -50,6 +50,11 @@ public class Activity implements Action {
             ((PerryThePlatypus) entity).executeActivity(this.world,
                     this.imageStore, scheduler);
         }
+        else if(entity.getClass() == MoleRat.class)
+        {
+            ((MoleRat) entity).executeActivity(this.world,
+                    this.imageStore, scheduler);
+        }
         else
         {
             throw new UnsupportedOperationException(String.format(

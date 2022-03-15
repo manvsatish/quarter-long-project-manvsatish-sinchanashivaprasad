@@ -50,5 +50,4 @@ public abstract class Move extends AnimatedEntity{
     {
         return point -> !world.isOccupied(point) && world.withinBounds(point);
     }
-
 }

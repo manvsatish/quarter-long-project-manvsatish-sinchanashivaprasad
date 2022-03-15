@@ -25,6 +25,10 @@ public abstract class AnimatedEntity extends MovingEntity {
         super.scheduleActions(scheduler, world, imageStore);
     }
 
-
     protected abstract void executeActivity (WorldModel world, ImageStore imageStore, EventScheduler scheduler);
+
+    public void setActionPeriod(int actionPeriod)
+    {
+        this.actionPeriod = actionPeriod;
+    }
 }

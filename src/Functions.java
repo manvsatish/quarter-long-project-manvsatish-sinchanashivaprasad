@@ -54,6 +54,15 @@ public final class Functions
     public static final int DUDE_ACTION_PERIOD = 5;
     public static final int DUDE_ANIMATION_PERIOD = 6;
 
+    public static final String MOLE_RAT_KEY = "molerat";
+    public static final int MOLE_RAT_PROPERTIES = 7;
+    public static final int MOLE_RAT_ID = 1;
+    public static final int MOLE_RAT_COL = 2;
+    public static final int MOLE_RAT_ROW = 3;
+    public static final int MOLE_RAT_LIMIT = 4;
+    public static final int MOLE_RAT_ACTION_PERIOD = 5;
+    public static final int MOLE_RAT_ANIMATION_PERIOD = 6;
+
     public static final String HOUSE_KEY = "house";
     public static final int HOUSE_NUM_PROPERTIES = 4;
     public static final int HOUSE_ID = 1;

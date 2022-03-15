@@ -60,4 +60,14 @@ public abstract class Entity
     {
         return this.images;
     }
+
+    public void setImageIndex(int imageIndex) {
+        this.imageIndex = imageIndex;
+    }
+
+    public void setImages(List<PImage> images) {
+        this.images = images;
+    }
+
+
 }

@@ -68,4 +68,9 @@ public final class WorldView
         this.drawBackground();
         this.drawEntities();
     }
+
+    public Viewport getViewport()
+    {
+        return this.viewport;
+    }
 }

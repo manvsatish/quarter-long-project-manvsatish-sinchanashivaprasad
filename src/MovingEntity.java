@@ -20,4 +20,9 @@ public abstract class MovingEntity extends Entity{
                 Functions.createAnimationAction(this, 0),
                 getAnimationPeriod());
     }
+
+    public void setAnimationPeriod(int animationPeriod)
+    {
+        this.animationPeriod = animationPeriod;
+    }
 }

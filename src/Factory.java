@@ -93,27 +93,30 @@ public class Factory {
 
     public static MoleRat createMoleRat(String id,
                                                Point position,
+                                               int resourceLimit,
+                                               int resourceCount,
                                                int actionPeriod,
                                                int animationPeriod,
                                                List<PImage> images)
     {
-        return new MoleRat( id, position, images,
+        return new MoleRat( id, position, images, resourceLimit, resourceCount,
                 actionPeriod, animationPeriod);
     }
 
 
-    public static Entity createDoofenshmirtz(
+    public static Doofenshmirtz createDoofenshmirtz(
             String id, Point position, int animationPeriod, List<PImage> images)
     {
         return new Doofenshmirtz(id, position, images,
                 animationPeriod);
     }
 
-    public static Entity createMoleRatInator(
-            String id, Point position, int animationPeriod, List<PImage> images)
+    public static MoleRatInator createMoleRatInator(String id,
+                                                    Point position,
+                                                    List<PImage> images,
+                                                    int animationPeriod)
     {
-        return new MoleRatInator(id, position, images,
-                animationPeriod);
+        return new MoleRatInator(id, position, images, animationPeriod);
     }
 
 }

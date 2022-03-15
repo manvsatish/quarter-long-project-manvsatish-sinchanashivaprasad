@@ -17,18 +17,18 @@ public final class Background
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public List<PImage> getImages() {
-        return images;
+        return this.images;
     }
 
     public int getImageIndex() {
-        return imageIndex;
+        return this.imageIndex;
     }
 
     public PImage getCurrentImage(Background entity) {
-        return images.get(entity.imageIndex);
+        return images.get(entity.getImageIndex());
     }
 }
