@@ -109,10 +109,10 @@ public class Factory {
                 animationPeriod);
     }
 
-    public static Entity createMoleratinator(
+    public static Entity createMoleRatInator(
             String id, Point position, int animationPeriod, List<PImage> images)
     {
-        return new Moleratinator(id, position, images,
+        return new MoleRatInator(id, position, images,
                 animationPeriod);
     }
 
