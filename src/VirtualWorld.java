@@ -46,6 +46,7 @@ public final class VirtualWorld extends PApplet
     private EventScheduler scheduler;
 
     private long nextTime;
+    private boolean mouseClick;
 
     public void settings() {
         size(VIEW_WIDTH, VIEW_HEIGHT);
@@ -91,12 +92,16 @@ public final class VirtualWorld extends PApplet
 
     public void eventNewEntity()
     {
-        PerryThePlatypus perryThePlatypus = Factory.createPerry(Functions.PERRY_KEY,
-                pressedPointOffset(4, 2), Functions.PERRY_ACTION_PERIOD,
+        Point perryOffset = pressedPointOffset(4, 2);
+        if(!(world.isOccupied(perryOffset)))
+        {
+            PerryThePlatypus perryThePlatypus = Factory.createPerry(Functions.PERRY_KEY,
+                perryOffset, Functions.PERRY_ACTION_PERIOD,
                 Functions.PERRY_ANIMATION_PERIOD, imageStore.getImageList(Functions.PERRY_KEY));
-        world.addEntity(perryThePlatypus);
-        perryThePlatypus.scheduleActions(scheduler, world, imageStore);
-        createMonogram();
+            createMonogram();
+            world.addEntity(perryThePlatypus);
+            perryThePlatypus.scheduleActions(scheduler, world, imageStore);
+        }
     }
 
     public void createMonogram()
@@ -109,6 +114,7 @@ public final class VirtualWorld extends PApplet
     {
         Doofenshmirtz doof = Factory.createDoofenshmirtz(Functions.DOOF_KEY, pressed,
                 Functions.DOOF_ANIMATION_PERIOD, imageStore.getImageList(Functions.DOOF_KEY));
+
         world.addEntity(doof);
         scheduler.unscheduleAllEvents(doof);
 

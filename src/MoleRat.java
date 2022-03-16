@@ -27,7 +27,6 @@ public class MoleRat extends Move{
             if (moveTo(world, moleTarget.get(), scheduler)) {
                 HouseBite houseBite = (HouseBite) Factory.createHouseBite(Functions.HOUSEBITE_KEY, tgtPos,
                         imageStore.getImageList(Functions.HOUSEBITE_KEY));
-
                 world.addEntity(houseBite);
             }
         }

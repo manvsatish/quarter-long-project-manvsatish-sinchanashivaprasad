@@ -67,7 +67,6 @@ public class PerryThePlatypus extends Move{
                 if (occupant.isPresent()) {
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
-
                 world.moveEntity(this, nextPos);
             }
             return false;
