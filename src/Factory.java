@@ -114,4 +114,10 @@ public class Factory {
         return new HouseBite(id, position, images, 0);
     }
 
+    public static MajorMonogram createMajorMonogram(
+            String id, Point position, List<PImage> images)
+    {
+        return new MajorMonogram(id, position, images, 0);
+    }
+
 }

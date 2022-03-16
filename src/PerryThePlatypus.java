@@ -18,45 +18,40 @@ public class PerryThePlatypus extends Move{
     @Override
     protected void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> perryTarget =
-                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(MoleRat.class)));
+                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(MoleRat.class,
+                        HouseBite.class, MajorMonogram.class)));
 
         if (perryTarget.isPresent()) {
             Point tgtPos = perryTarget.get().getPosition();
 
             if (moveTo(world, perryTarget.get(), scheduler)) {
-                DudeNotFull dude = (DudeNotFull) Factory.createDudeNotFull("dude not full" + this.getId(),
-                        tgtPos, Functions.DUDE_ACTION_PERIOD, Functions.DUDE_ANIMATION_PERIOD,
-                        5, imageStore.getImageList(Functions.DUDE_KEY));
+                if(perryTarget.get().getClass() == HouseBite.class)
+                {
+                    House house = (House) Factory.createHouse(Functions.HOUSE_KEY,
+                            tgtPos, imageStore.getImageList(Functions.HOUSE_KEY));
+                    world.addEntity(house);
+                }
+                else if(perryTarget.get().getClass() == MoleRat.class)
+                {
+                    DudeNotFull dude = (DudeNotFull) Factory.createDudeNotFull("dude not full" + this.getId(),
+                            tgtPos, Functions.DUDE_ACTION_PERIOD, Functions.DUDE_ANIMATION_PERIOD,
+                            5, imageStore.getImageList(Functions.DUDE_KEY));
 
-                world.addEntity(dude);
-                dude.scheduleActions(scheduler, world, imageStore);
+                    world.addEntity(dude);
+                    dude.scheduleActions(scheduler, world, imageStore);
+                }
+                else
+                {
+                    MajorMonogram mm = Factory.createMajorMonogram(Functions.MM_KEY,
+                            tgtPos, imageStore.getImageList(Functions.MM_KEY));
+                    world.addEntity(mm);
+                }
             }
         }
-
         scheduler.scheduleEvent(this,
                 Functions.createActivityAction(this, world, imageStore),
                 this.getActionPeriod());
     }
-//
-//    protected void executeActivityHouseBite(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-//        Optional<Entity> perryTarget =
-//                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(HouseBite.class)));
-//
-//        if (perryTarget.isPresent()) {
-//            Point tgtPos = perryTarget.get().getPosition();
-//
-//            if (moveTo(world, perryTarget.get(), scheduler)) {
-//                House house = (House) Factory.createHouse(Functions.HOUSE_KEY,
-//                        tgtPos, imageStore.getImageList(Functions.HOUSE_KEY));
-//
-//                world.addEntity(house);
-//            }
-//        }
-//
-//        scheduler.scheduleEvent(this,
-//                Functions.createActivityAction(this, world, imageStore),
-//                this.getActionPeriod());
-//    }
 
     @Override
     protected boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {

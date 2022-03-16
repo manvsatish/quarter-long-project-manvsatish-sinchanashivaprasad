@@ -23,9 +23,9 @@ public class DudeNotFull extends Dude{
 
     @Override
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+        this.transformMoleRat(world, scheduler, imageStore);
         Optional<Entity> target =
                 world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));
-
         if (!target.isPresent() || !moveTo(world,
                 target.get(),
                 scheduler)

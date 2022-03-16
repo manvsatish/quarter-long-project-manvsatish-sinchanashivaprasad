@@ -55,13 +55,8 @@ public final class Functions
     public static final int DUDE_ANIMATION_PERIOD = 6;
 
     public static final String MOLE_RAT_KEY = "molerat";
-//    public static final int MOLE_RAT_PROPERTIES = 7;
-//    public static final int MOLE_RAT_ID = 1;
-//    public static final int MOLE_RAT_COL = 2;
-//    public static final int MOLE_RAT_ROW = 3;
-//    public static final int MOLE_RAT_LIMIT = 4;
-    public static final int MOLE_RAT_ACTION_PERIOD = 5;
-    public static final int MOLE_RAT_ANIMATION_PERIOD = 4;
+    public static final int MOLE_RAT_ACTION_PERIOD = 500;
+    public static final int MOLE_RAT_ANIMATION_PERIOD = 5;
 
     public static final String HOUSE_KEY = "house";
     public static final int HOUSE_NUM_PROPERTIES = 4;
@@ -69,11 +64,9 @@ public final class Functions
     public static final int HOUSE_COL = 2;
     public static final int HOUSE_ROW = 3;
 
+    public static final String MM_KEY = "mm";
+
     public static final String HOUSEBITE_KEY = "housebite";
-//    public static final int HOUSEBITE_NUM_PROPERTIES = 4;
-//    public static final int HOUSEBITE_ID = 1;
-//    public static final int HOUSEBITE_COL = 2;
-//    public static final int HOUSEBITE_ROW = 3;
 
     public static final String FAIRY_KEY = "fairy";
     public static final int FAIRY_NUM_PROPERTIES = 6;
@@ -89,7 +82,7 @@ public final class Functions
     public static final int PERRY_COL = 2;
     public static final int PERRY_ROW = 3;
     public static final int PERRY_ANIMATION_PERIOD = 4;
-    public static final int PERRY_ACTION_PERIOD = 5;
+    public static final int PERRY_ACTION_PERIOD = 500;
 
     public static final String DOOF_KEY = "doofenshmirtz";
     public static final int DOOF_NUM_PROPERTIES = 5;

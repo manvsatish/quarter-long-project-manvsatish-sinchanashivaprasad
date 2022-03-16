@@ -85,41 +85,37 @@ public final class VirtualWorld extends PApplet
     // Just for debugging and for P5
     public void mousePressed() {
         Point pressed = mouseToPoint();
+        eventVisualization(pressed);
+        eventNewEntity();
+    }
+
+    public void eventNewEntity()
+    {
+        PerryThePlatypus perryThePlatypus = Factory.createPerry(Functions.PERRY_KEY,
+                pressedPointOffset(4, 2), Functions.PERRY_ACTION_PERIOD,
+                Functions.PERRY_ANIMATION_PERIOD, imageStore.getImageList(Functions.PERRY_KEY));
+        world.addEntity(perryThePlatypus);
+        perryThePlatypus.scheduleActions(scheduler, world, imageStore);
+        createMonogram();
+    }
+
+    public void createMonogram()
+    {
+        MajorMonogram monogram = Factory.createMajorMonogram(Functions.MM_KEY, new Point(30, 3), imageStore.getImageList(Functions.MM_KEY));
+        world.addEntity(monogram);
+    }
+
+    public void eventVisualization(Point pressed)
+    {
         Doofenshmirtz doof = Factory.createDoofenshmirtz(Functions.DOOF_KEY, pressed,
                 Functions.DOOF_ANIMATION_PERIOD, imageStore.getImageList(Functions.DOOF_KEY));
         world.addEntity(doof);
         scheduler.unscheduleAllEvents(doof);
-        eventVisualization();
 
-        PerryThePlatypus perryThePlatypus = Factory.createPerry(Functions.PERRY_KEY, pressedPointOffset(5, 0), Functions.PERRY_ACTION_PERIOD,
-                Functions.PERRY_ANIMATION_PERIOD, imageStore.getImageList(Functions.PERRY_KEY));
-        world.addEntity(perryThePlatypus);
-        perryThePlatypus.scheduleActions(scheduler, world, imageStore);
-    }
-
-    public void eventVisualization()
-    {
         Background moleRatInator = new Background(Functions.INATOR_KEY, imageStore.getImageList(Functions.INATOR_KEY));
         aroundDoof(1).forEach(point -> {
             world.setBackground(point, moleRatInator);
-            if (dudeNearInator(point) && world.getOccupant(point).isPresent())
-            {
-                Dude dude = (Dude) (world.getOccupant(point).get());
-                dude.setImageIndex(0);
-                dude.transformMoleRat(world, scheduler, imageStore, point);
-//                dude.setImages(imageStore.getImageList(Functions.MOLE_RAT_KEY));
-//                dude.setAnimationPeriod(Functions.MOLE_RAT_ANIMATION_PERIOD);
-//                dude.setActionPeriod(Functions.MOLE_RAT_ACTION_PERIOD);
-            }
         });
-    }
-
-
-    private boolean dudeNearInator(Point pos)
-    {
-        return world.withinBounds(pos) &&
-                (world.getOccupancyCell(pos) instanceof DudeNotFull ||
-                        world.getOccupancyCell(pos) instanceof DudeFull);
     }
 
     private Point pressedPointOffset(int x, int y)
