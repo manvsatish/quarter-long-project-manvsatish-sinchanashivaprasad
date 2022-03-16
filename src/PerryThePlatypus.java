@@ -37,26 +37,26 @@ public class PerryThePlatypus extends Move{
                 Functions.createActivityAction(this, world, imageStore),
                 this.getActionPeriod());
     }
-
-    protected void executeActivityHouseBite(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> perryTarget =
-                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(HouseBite.class)));
-
-        if (perryTarget.isPresent()) {
-            Point tgtPos = perryTarget.get().getPosition();
-
-            if (moveTo(world, perryTarget.get(), scheduler)) {
-                House house = (House) Factory.createHouse(Functions.HOUSE_KEY,
-                        tgtPos, imageStore.getImageList(Functions.HOUSE_KEY));
-
-                world.addEntity(house);
-            }
-        }
-
-        scheduler.scheduleEvent(this,
-                Functions.createActivityAction(this, world, imageStore),
-                this.getActionPeriod());
-    }
+//
+//    protected void executeActivityHouseBite(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+//        Optional<Entity> perryTarget =
+//                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(HouseBite.class)));
+//
+//        if (perryTarget.isPresent()) {
+//            Point tgtPos = perryTarget.get().getPosition();
+//
+//            if (moveTo(world, perryTarget.get(), scheduler)) {
+//                House house = (House) Factory.createHouse(Functions.HOUSE_KEY,
+//                        tgtPos, imageStore.getImageList(Functions.HOUSE_KEY));
+//
+//                world.addEntity(house);
+//            }
+//        }
+//
+//        scheduler.scheduleEvent(this,
+//                Functions.createActivityAction(this, world, imageStore),
+//                this.getActionPeriod());
+//    }
 
     @Override
     protected boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
