@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class DudeFull extends Move{
-    private int resourceLimit;
-
+public class DudeFull extends Dude{
     public DudeFull(
             String id,
             Point position,
@@ -16,8 +14,7 @@ public class DudeFull extends Move{
             int actionPeriod,
             int animationPeriod)
     {
-        super(id, position, images, actionPeriod, animationPeriod);
-        this.resourceLimit = resourceLimit;
+        super(id, position, images, actionPeriod, animationPeriod, resourceLimit);
     }
 
     @Override
@@ -36,16 +33,10 @@ public class DudeFull extends Move{
     }
 
     public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        /*DudeNotFull miner = (DudeNotFull) Factory.createDudeNotFull(this.getId(), this.getPosition(),
-                this.getActionPeriod(),
-                this.getAnimationPeriod(),
-                this.resourceLimit,
-                this.getImages());*/
-
         DudeNotFull miner = (DudeNotFull) Factory.createDudeNotFull(this.getId(), this.getPosition(),
                 this.getActionPeriod(),
                 this.getAnimationPeriod(),
-                this.resourceLimit,
+                this.getResourceLimit(),
                 this.getImages());
 
         world.removeEntity(this);

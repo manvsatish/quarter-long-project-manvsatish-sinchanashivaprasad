@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class DudeNotFull extends Move{
-    private int resourceLimit;
+public class DudeNotFull extends Dude{
     private int resourceCount;
 
     public DudeNotFull(
@@ -18,8 +17,7 @@ public class DudeNotFull extends Move{
             int actionPeriod,
             int animationPeriod)
     {
-        super(id, position, images, actionPeriod, animationPeriod);
-        this.resourceLimit = resourceLimit;
+        super(id, position, images, actionPeriod, animationPeriod, resourceLimit);
         this.resourceCount = resourceCount;
     }
 
@@ -39,11 +37,11 @@ public class DudeNotFull extends Move{
     }
 
     public boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        if (this.resourceCount >= this.resourceLimit) {
+        if (this.resourceCount >= this.getResourceLimit()) {
             DudeFull miner = (DudeFull) Factory.createDudeFull(this.getId(), this.getPosition(),
                     this.getActionPeriod(),
                     this.getAnimationPeriod(),
-                    this.resourceLimit,
+                    this.getResourceLimit(),
                     this.getImages());
 
             world.removeEntity(this);
@@ -58,53 +56,6 @@ public class DudeNotFull extends Move{
         return false;
     }
 
-    public boolean transformMoleRat(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-
-        Optional<Entity> inator =
-                world.findNearest(this.getPosition(), new ArrayList<>(Arrays.asList(MoleRatInator.class)));
-
-        if (inator.isPresent()) {
-
-            Point tgtPos = inator.get().getPosition();
-
-            if (moveTo(world, inator.get(), scheduler)) {
-                MoleRat molerat = (MoleRat) Factory.createMoleRat("molerat not full" + this.getId(),
-                        tgtPos, this.resourceLimit, this.resourceCount, Functions.MOLE_RAT_ACTION_PERIOD, Functions.MOLE_RAT_ANIMATION_PERIOD,
-                        imageStore.getImageList(Functions.MOLE_RAT_KEY));
-
-                world.addEntity(molerat);
-                molerat.scheduleActions(scheduler, world, imageStore);
-                //return true;
-            }
-        }
-
-        scheduler.scheduleEvent(this,
-                Functions.createActivityAction(this, world, imageStore),
-                this.getActionPeriod());
-        return false;
-    }
-
-
-
-//
-//
-//            DudeFull miner = (DudeFull) Factory.createDudeFull(this.getId(), this.getPosition(),
-//                    this.getActionPeriod(),
-//                    this.getAnimationPeriod(),
-//                    this.resourceLimit,
-//                    this.getImages());
-//
-//            world.removeEntity(this);
-//            scheduler.unscheduleAllEvents(this);
-//
-//            world.addEntity(miner);
-//            miner.scheduleActions(scheduler, world, imageStore);
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
 
     @Override
     public boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
@@ -126,22 +77,5 @@ public class DudeNotFull extends Move{
             return false;
         }
     }
-
-//    @Override
-//    public Point nextPosition(WorldModel world, Point destPos) {
-//        int horiz = Integer.signum(destPos.getX() - this.getPosition().getX());
-//        Point newPos = new Point(this.getPosition().getX() + horiz, this.getPosition().getY());
-//
-//        if (horiz == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != Stump.class) {
-//            int vert = Integer.signum(destPos.getY() - this.getPosition().getY());
-//            newPos = new Point(this.getPosition().getX(), this.getPosition().getY() + vert);
-//
-//            if (vert == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != Stump.class) {
-//                newPos = this.getPosition();
-//            }
-//        }
-//
-//        return newPos;
-//    }
 
 }

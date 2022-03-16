@@ -93,14 +93,11 @@ public class Factory {
 
     public static MoleRat createMoleRat(String id,
                                         Point position,
-                                        int resourceLimit,
-                                        int resourceCount,
                                         int actionPeriod,
                                         int animationPeriod,
                                         List<PImage> images)
     {
-        return new MoleRat( id, position, images, resourceLimit, resourceCount,
-                actionPeriod, animationPeriod);
+        return new MoleRat( id, position, images, actionPeriod, animationPeriod);
     }
 
 
@@ -111,12 +108,10 @@ public class Factory {
                 animationPeriod);
     }
 
-    public static MoleRatInator createMoleRatInator(String id,
-                                                     Point position,
-                                                     List<PImage> images,
-                                                     int animationPeriod)
+    public static Entity createHouseBite(
+            String id, Point position, List<PImage> images)
     {
-        return new MoleRatInator(id, position, images, animationPeriod);
+        return new HouseBite(id, position, images, 0);
     }
 
 }

@@ -49,6 +49,8 @@ public class Activity implements Action {
         {
             ((PerryThePlatypus) entity).executeActivity(this.world,
                     this.imageStore, scheduler);
+            ((PerryThePlatypus) entity).executeActivityHouseBite(this.world,
+                    this.imageStore, scheduler);
         }
         else if(entity.getClass() == MoleRat.class)
         {

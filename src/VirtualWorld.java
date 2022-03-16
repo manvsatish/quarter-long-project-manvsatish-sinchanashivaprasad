@@ -2,10 +2,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import processing.core.*;
 
@@ -93,6 +91,10 @@ public final class VirtualWorld extends PApplet
         scheduler.unscheduleAllEvents(doof);
         eventVisualization();
 
+        PerryThePlatypus perryThePlatypus = Factory.createPerry(Functions.PERRY_KEY, pressedPointOffset(5, 0), Functions.PERRY_ACTION_PERIOD,
+                Functions.PERRY_ANIMATION_PERIOD, imageStore.getImageList(Functions.PERRY_KEY));
+        world.addEntity(perryThePlatypus);
+        perryThePlatypus.scheduleActions(scheduler, world, imageStore);
     }
 
     public void eventVisualization()
@@ -102,14 +104,16 @@ public final class VirtualWorld extends PApplet
             world.setBackground(point, moleRatInator);
             if (dudeNearInator(point) && world.getOccupant(point).isPresent())
             {
-                Move dude = (Move) (world.getOccupant(point).get());
+                Dude dude = (Dude) (world.getOccupant(point).get());
                 dude.setImageIndex(0);
-                dude.setImages(imageStore.getImageList(Functions.MOLE_RAT_KEY));
-                dude.setAnimationPeriod(Functions.MOLE_RAT_ANIMATION_PERIOD);
-                dude.setActionPeriod(Functions.MOLE_RAT_ACTION_PERIOD);
+                dude.transformMoleRat(world, scheduler, imageStore, point);
+//                dude.setImages(imageStore.getImageList(Functions.MOLE_RAT_KEY));
+//                dude.setAnimationPeriod(Functions.MOLE_RAT_ANIMATION_PERIOD);
+//                dude.setActionPeriod(Functions.MOLE_RAT_ACTION_PERIOD);
             }
         });
     }
+
 
     private boolean dudeNearInator(Point pos)
     {
@@ -125,12 +129,13 @@ public final class VirtualWorld extends PApplet
 
     private List<Point> aroundDoof(int doofenshmirtzOffset)
     {
-        // points for the 8 moleratinators
+        // points for the 8 MoleRatInators
         return Arrays.asList(pressedPointOffset(0, doofenshmirtzOffset), pressedPointOffset(doofenshmirtzOffset, 0),
                 pressedPointOffset(doofenshmirtzOffset, doofenshmirtzOffset), pressedPointOffset(0, -doofenshmirtzOffset),
                 pressedPointOffset(-doofenshmirtzOffset, 0), pressedPointOffset(-doofenshmirtzOffset, -doofenshmirtzOffset),
                 pressedPointOffset(doofenshmirtzOffset, -doofenshmirtzOffset), pressedPointOffset(-doofenshmirtzOffset, doofenshmirtzOffset));
     }
+
 
     private Point mouseToPoint()
     {
