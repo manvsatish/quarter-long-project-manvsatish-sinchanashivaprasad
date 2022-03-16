@@ -1,0 +1,17 @@
+﻿1. How to trigger the event
+        The event is triggered by clicking on the screen at a certain point. 
+2. What should happen when the event is triggered
+When the event is triggered, if the dude is adjacent to a MoleRatInator, it will turn into a mole rat. The mole rats eat the houses and destroy them. 
+3. What the affected entities should do
+        The affected entities (in our game the Dudes) will be turned into mole rats. These mole rats run around and bite into the houses. 
+4. What the new entity is and how it should behave
+The new entity that is spawned is Perry. Perry fixes the houses that the mole rat “destroyed” by eating it and also turns the mole rats back into dudes. Once Perry is done with both tasks, he reports back to Major Monogram on the far right side of the world. 
+5. (If applicable) the names of each partner and what each partner was responsible for
+        Manvika Satish: 
+* Drew the Perry and Mole Rat piskels.
+* Created a world event which transformed dudes into mole rats which ate the houses and “destroyed” them. 
+*  Spawned perry which transformed houses, mole rats, and reported to Major Monogram. 
+        Sinchana Shivaprasad: 
+* Drew Doofenshmirtz, Inator, and Major Monogram piskels.
+* Spawned Doofenshmirtz and Inator as targets for Perry.
+*  Spawned perry which transformed houses, mole rats, and reported to Major Monogram.
