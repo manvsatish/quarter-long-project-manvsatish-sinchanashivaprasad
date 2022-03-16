@@ -55,7 +55,7 @@ public final class Functions
     public static final int DUDE_ANIMATION_PERIOD = 6;
 
     public static final String MOLE_RAT_KEY = "molerat";
-    public static final int MOLE_RAT_ACTION_PERIOD = 500;
+    public static final int MOLE_RAT_ACTION_PERIOD = 200;
     public static final int MOLE_RAT_ANIMATION_PERIOD = 5;
 
     public static final String HOUSE_KEY = "house";
